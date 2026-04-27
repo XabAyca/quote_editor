@@ -1,0 +1,20 @@
+acme_design:
+  quote: draft_one
+  name: "Design maquettes"
+  quantity: 3.0
+  unit_price_cents: 80000   # 800,00 €
+  vat_rate: 20.00
+
+acme_dev:
+  quote: draft_one
+  name: "Développement"
+  quantity: 10.5
+  unit_price_cents: 60000   # 600,00 €
+  vat_rate: 20.00
+
+beta_audit:
+  quote: validated_one
+  name: "Audit"
+  quantity: 1.0
+  unit_price_cents: 150000  # 1 500,00 €
+  vat_rate: 20.00

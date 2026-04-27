@@ -1,0 +1,6 @@
+draft_one:
+  name: "Devis Acme — site vitrine"
+
+validated_one:
+  name: "Devis Beta — refonte"
+  validated_at: <%= 2.days.ago.iso8601 %>
