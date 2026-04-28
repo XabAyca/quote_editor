@@ -10,11 +10,14 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  root "quotes#index"
-  resources :quotes do
-    member do
-      patch :validate
+
+  scope "(:locale)", locale: Regexp.union(I18n.available_locales.map(&:to_s)) do
+    root "quotes#index"
+    resources :quotes do
+      member do
+        patch :validate
+      end
+      resources :quote_items, only: %i[new create edit update destroy], shallow: true
     end
-    resources :quote_items, only: %i[new create edit update destroy], shallow: true
   end
 end
