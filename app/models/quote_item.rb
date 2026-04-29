@@ -46,7 +46,7 @@ class QuoteItem < ApplicationRecord
   private
 
   def broadcast_stats_update
-    broadcast_replace_later_to(
+    broadcast_replace_to(
       quote,
       :quote_items,
       target: "quote_totals",

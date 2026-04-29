@@ -1,7 +1,8 @@
 en:
   quote_items:
     index:
-      back: "←   Save and exit"
+      back_draft: "←   Save and exit"
+      back_validated: "←   Exit"
       validate: "Validate quote  →"
       status:
         validated: "Validated"

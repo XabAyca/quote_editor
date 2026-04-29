@@ -38,6 +38,8 @@ class QuotesController < ApplicationController
 
   def set_quote
     @quote = Quote.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    not_found
   end
 
   def quote_params

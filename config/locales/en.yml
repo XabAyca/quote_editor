@@ -23,6 +23,8 @@ en:
   shared:
     actions:
       cancel: "Cancel"
+    alert:
+      not_found: "Element not found"
 
   helpers:
     submit:

@@ -23,6 +23,8 @@ fr:
   shared:
     actions:
       cancel: "Annuler"
+    alert:
+      not_found: "Elément introuvable"
 
   helpers:
     submit:

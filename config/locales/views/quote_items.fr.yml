@@ -1,7 +1,8 @@
 fr:
   quote_items:
     index:
-      back: "←   Enregistrer et quitter"
+      back_draft: "←   Enregistrer et quitter"
+      back_validated: "←   Quitter"
       validate: "Valider le devis  →"
       status:
         validated: "Validé"

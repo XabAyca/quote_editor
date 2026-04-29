@@ -44,10 +44,14 @@ class QuoteItemsController < ApplicationController
 
   def set_quote
     @quote = Quote.find(params[:quote_id])
+  rescue ActiveRecord::RecordNotFound
+    not_found
   end
 
   def set_quote_item
     @quote_item = @quote.quote_items.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    not_found
   end
 
   def quote_item_params

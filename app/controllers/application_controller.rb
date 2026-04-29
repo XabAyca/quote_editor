@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  def not_found
+    redirect_back_or_to root_path, alert: t("shared.alert.not_found")
+  end
+
   private
 
   def set_locale
