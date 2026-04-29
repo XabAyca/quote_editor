@@ -11,6 +11,15 @@ en:
       short: "%b %-d, %H:%M"
       long: "%B %-d, %Y at %H:%M"
 
+  number:
+    currency:
+      format:
+        unit: "€"
+        format: "%n %u"
+        separator: "."
+        delimiter: ","
+        precision: 2
+
   shared:
     actions:
       cancel: "Cancel"

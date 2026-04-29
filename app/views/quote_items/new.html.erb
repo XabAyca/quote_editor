@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :new_quote_item do %>
   <div class="mb-10">
-    <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 border-2 border-violet-200 rounded-lg">
+    <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 border-2 border-violet-200 rounded-lg" data-controller="quote-totals">
       <%= form_with model: [@quote, @quote_item], class: "contents" do |f| %>
         <%= f.text_field :name,
               placeholder: t(".placeholder_name"),
@@ -9,18 +9,29 @@
         <%= f.number_field :quantity,
               placeholder: t(".placeholder_quantity"),
               step: "0.5",
-              class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
+              class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500",
+              data: {
+                quote_totals_target: "quantity",
+                action: "input->quote-totals#update"
+              } %>
         <%= f.number_field :unit_price,
               placeholder: t(".placeholder_unit_price"),
               step: "0.01",
-              class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
+              class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500",
+              data: {
+                quote_totals_target: "unitPrice",
+                action: "input->quote-totals#update"
+              } %>
         <%= f.select :vat_rate,
               [["5,5 %", 5.5], ["10 %", 10], ["20 %", 20]],
               { prompt: t(".prompt_vat") },
-              class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
-
-        <div class="col-span-2 text-sm text-gray-400"><%= t("quote_items.index.headers.total_excl_tax") %></div>
-        <div class="col-span-2 text-sm text-gray-400"><%= t("quote_items.index.headers.total_incl_tax") %></div>
+              class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500",
+              data: {
+                quote_totals_target: "vatRate",
+                action: "input->quote-totals#update"
+              } %>
+        <div data-quote-totals-target="totalExclVAT" class="col-span-2 text-sm text-gray-400"><%= t("quote_items.index.headers.total_excl_tax") %></div>
+        <div data-quote-totals-target="totalInclVAT" class="col-span-2 text-sm text-gray-400"><%= t("quote_items.index.headers.total_incl_tax") %></div>
 
         <div class="col-span-2 flex gap-2 justify-end">
           <%= f.submit class: "px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 cursor-pointer" %>
