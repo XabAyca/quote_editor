@@ -10,3 +10,9 @@ en:
         name: "Name"
         created_at: "Date"
         validated_at: "Validated at"
+    errors:
+      models:
+        quote:
+          attributes:
+            base:
+              already_validated: "cannot be modified once validated"

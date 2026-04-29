@@ -10,3 +10,9 @@ fr:
         name: "Nom"
         created_at: "Date"
         validated_at: "Validé le"
+    errors:
+      models:
+        quote:
+          attributes:
+            base:
+              already_validated: "ne peut plus être modifié une fois validé"

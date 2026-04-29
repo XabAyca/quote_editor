@@ -8,6 +8,7 @@ class Quote < ApplicationRecord
   accepts_nested_attributes_for :quote_items, allow_destroy: true, reject_if: :all_blank
 
   validates :name, presence: true
+  validate :prevent_updates_after_validation, on: :update
 
   before_destroy :prevent_destroy_if_validated
 
@@ -17,10 +18,6 @@ class Quote < ApplicationRecord
 
   def mark_as_validated!
     update!(validated_at: Time.current)
-  end
-
-  def readonly?
-    validated? && persisted? && !validated_at_changed?
   end
 
   def total_excl_tax_cents
@@ -36,6 +33,11 @@ class Quote < ApplicationRecord
   end
 
   private
+
+  def prevent_updates_after_validation
+    return unless validated? && !validated_at_changed?
+    errors.add(:base, :already_validated)
+  end
 
   def prevent_destroy_if_validated
     throw(:abort) if validated?

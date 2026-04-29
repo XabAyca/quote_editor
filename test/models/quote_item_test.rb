@@ -8,13 +8,13 @@ class QuoteItemTest < ActiveSupport::TestCase
   test "validates presence of name" do
     item = QuoteItem.new(quote: quotes(:draft_one), name: nil, quantity: 1, unit_price_cents: 100, vat_rate: 20)
     assert_not item.valid?
-    assert_includes item.errors[:name], "can't be blank"
+    assert item.errors.of_kind?(:name, :blank)
   end
 
   test "validates quantity is greater than 0" do
     item = QuoteItem.new(quote: quotes(:draft_one), name: "X", quantity: 0, unit_price_cents: 100, vat_rate: 20)
     assert_not item.valid?
-    assert_includes item.errors[:quantity], "must be greater than 0"
+    assert item.errors.of_kind?(:quantity, :greater_than)
   end
 
   test "validates unit_price_cents is non-negative" do
@@ -35,14 +35,20 @@ class QuoteItemTest < ActiveSupport::TestCase
   test "validates belongs_to quote" do
     item = QuoteItem.new(name: "X", quantity: 1, unit_price_cents: 100, vat_rate: 20)
     assert_not item.valid?
-    assert_includes item.errors[:quote], "must exist"
+    assert item.errors[:quote].any?
   end
 
   test "validates parent_quote_must_be_draft" do
     item = quote_items(:beta_audit)
     item.name = "X"
     assert_not item.valid?
-    assert_includes item.errors[:base], "cannot modify items of a validated quote"
+    assert item.errors.of_kind?(:base, :quote_validated)
+  end
+
+  test "creating an item on a validated quote is blocked" do
+    item = quotes(:validated_one).quote_items.build(name: "X", quantity: 1, unit_price_cents: 100, vat_rate: 20)
+    assert_not item.valid?
+    assert item.errors.of_kind?(:base, :quote_validated)
   end
 
   # --- #unit_price (getter) ---
@@ -76,16 +82,6 @@ class QuoteItemTest < ActiveSupport::TestCase
 
     item.unit_price = ""
     assert_nil item.unit_price_cents
-  end
-
-  # --- #readonly? ---
-
-  test "#readonly? is false when parent quote is draft" do
-    assert_not quote_items(:acme_design).readonly?
-  end
-
-  test "#readonly? is true when parent quote is validated" do
-    assert quote_items(:beta_audit).readonly?
   end
 
   # --- #total_excl_tax_cents ---

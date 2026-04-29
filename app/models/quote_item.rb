@@ -29,10 +29,6 @@ class QuoteItem < ApplicationRecord
       end
   end
 
-  def readonly?
-    quote&.validated? && persisted?
-  end
-
   def total_excl_tax_cents
     return 0 if quantity.nil? || unit_price_cents.nil?
     (quantity * unit_price_cents).round

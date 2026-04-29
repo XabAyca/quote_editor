@@ -8,7 +8,7 @@ class QuoteTest < ActiveSupport::TestCase
   test "validates presence of name" do
     quote = Quote.new(name: nil)
     assert_not quote.valid?
-    assert_includes quote.errors[:name], "can't be blank"
+    assert quote.errors.of_kind?(:name, :blank)
   end
 
   # --- #validated? ---
@@ -31,20 +31,23 @@ class QuoteTest < ActiveSupport::TestCase
     assert quote.validated?
   end
 
-  # --- #readonly? ---
+  # --- update guard via validation ---
 
-  test "#readonly? is false on a draft" do
-    assert_not quotes(:draft_one).readonly?
+  test "update is blocked on a validated quote" do
+    quote = quotes(:validated_one)
+    assert_not quote.update(name: "X")
+    assert quote.errors.of_kind?(:base, :already_validated)
   end
 
-  test "#readonly? is true on a validated quote" do
-    assert quotes(:validated_one).readonly?
-  end
-
-  test "#readonly? is false during the validation save (carve-out)" do
+  test "validating a draft is allowed (validated_at transition)" do
     quote = quotes(:draft_one)
     quote.validated_at = Time.current
-    assert_not quote.readonly?
+    assert quote.save
+  end
+
+  test "clearing validated_at on a validated quote is allowed" do
+    quote = quotes(:validated_one)
+    quote.validated_at = nil
     assert quote.save
   end
 
@@ -95,12 +98,5 @@ class QuoteTest < ActiveSupport::TestCase
     assert_no_difference("Quote.count") do
       assert_equal false, quote.destroy
     end
-  end
-
-  # --- update path ---
-
-  test "update! raises ReadOnlyRecord on a validated quote" do
-    quote = quotes(:validated_one)
-    assert_raises(ActiveRecord::ReadOnlyRecord) { quote.update!(name: "X") }
   end
 end
