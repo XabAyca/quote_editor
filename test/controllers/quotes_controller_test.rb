@@ -7,7 +7,7 @@ class QuotesControllerTest < ActionDispatch::IntegrationTest
 
   test "creates a quote with valid params" do
     assert_difference("Quote.count", 1) do
-      post quotes_path, params: {quote: {name: "Nouveau devis"}}, as: :turbo_stream
+      post quotes_path, params: { quote: { name: "Nouveau devis" } }, as: :turbo_stream
     end
     assert_response :success
     assert_equal "Nouveau devis", Quote.last.name
@@ -15,7 +15,7 @@ class QuotesControllerTest < ActionDispatch::IntegrationTest
 
   test "rejects creation with blank name" do
     assert_no_difference("Quote.count") do
-      post quotes_path, params: {quote: {name: ""}}, as: :turbo_stream
+      post quotes_path, params: { quote: { name: "" } }, as: :turbo_stream
     end
     assert_response :unprocessable_entity
   end

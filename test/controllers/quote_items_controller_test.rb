@@ -12,7 +12,7 @@ class QuoteItemsControllerTest < ActionDispatch::IntegrationTest
   test "creates an item under a draft quote" do
     assert_difference("QuoteItem.count", 1) do
       post quote_quote_items_path(@quote),
-        params: {quote_item: {name: "Hébergement", quantity: 12, unit_price: "9.99", vat_rate: 20}},
+        params: { quote_item: { name: "Hébergement", quantity: 12, unit_price: "9.99", vat_rate: 20 } },
         as: :turbo_stream
     end
     assert_response :success
@@ -24,7 +24,7 @@ class QuoteItemsControllerTest < ActionDispatch::IntegrationTest
   test "rejects item creation with invalid params" do
     assert_no_difference("QuoteItem.count") do
       post quote_quote_items_path(@quote),
-        params: {quote_item: {name: "", quantity: 0, unit_price: "10", vat_rate: 20}},
+        params: { quote_item: { name: "", quantity: 0, unit_price: "10", vat_rate: 20 } },
         as: :turbo_stream
     end
     assert_response :unprocessable_entity
@@ -34,7 +34,7 @@ class QuoteItemsControllerTest < ActionDispatch::IntegrationTest
     validated = quotes(:validated_one)
     assert_no_difference("QuoteItem.count") do
       post quote_quote_items_path(validated),
-        params: {quote_item: {name: "X", quantity: 1, unit_price: "10", vat_rate: 20}},
+        params: { quote_item: { name: "X", quantity: 1, unit_price: "10", vat_rate: 20 } },
         as: :turbo_stream
     end
     assert_response :unprocessable_entity
@@ -45,7 +45,7 @@ class QuoteItemsControllerTest < ActionDispatch::IntegrationTest
   test "updates an item under a draft quote" do
     item = quote_items(:acme_design)
     patch quote_quote_item_path(@quote, item),
-      params: {quote_item: {name: "Design v2", quantity: 5, unit_price: "120", vat_rate: 20}},
+      params: { quote_item: { name: "Design v2", quantity: 5, unit_price: "120", vat_rate: 20 } },
       as: :turbo_stream
     assert_response :success
     item.reload
@@ -57,7 +57,7 @@ class QuoteItemsControllerTest < ActionDispatch::IntegrationTest
   test "rejects item update with invalid params" do
     item = quote_items(:acme_design)
     patch quote_quote_item_path(@quote, item),
-      params: {quote_item: {name: "", quantity: 1, unit_price: "10", vat_rate: 20}},
+      params: { quote_item: { name: "", quantity: 1, unit_price: "10", vat_rate: 20 } },
       as: :turbo_stream
     assert_response :unprocessable_entity
     assert_equal "Design maquettes", item.reload.name

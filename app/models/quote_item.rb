@@ -2,15 +2,15 @@
 
 # A single line of a quote. Inherits immutability from its parent quote once it is validated.
 class QuoteItem < ApplicationRecord
-  broadcasts_to ->(quote_item) { [quote_item.quote, :quote_items] }, inserts_by: :append
+  broadcasts_to ->(quote_item) { [ quote_item.quote, :quote_items ] }, inserts_by: :append
   after_commit :broadcast_stats_update, on: %i[create update destroy]
 
   belongs_to :quote, inverse_of: :quote_items
 
   validates :name, presence: true
-  validates :quantity, numericality: {greater_than: 0}
-  validates :unit_price_cents, numericality: {only_integer: true, greater_than_or_equal_to: 0}
-  validates :vat_rate, numericality: {in: 0..100}
+  validates :quantity, numericality: { greater_than: 0 }
+  validates :unit_price_cents, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :vat_rate, numericality: { in: 0..100 }
   validate :parent_quote_must_be_draft, on: %i[create update]
 
   before_destroy :prevent_destroy_if_quote_validated
@@ -51,7 +51,7 @@ class QuoteItem < ApplicationRecord
       :quote_items,
       target: "quote_totals",
       partial: "quote_items/quote_totals",
-      locals: {quote: quote}
+      locals: { quote: quote }
     )
   end
 

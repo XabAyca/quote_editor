@@ -18,15 +18,15 @@ class QuoteItemTest < ActiveSupport::TestCase
   end
 
   test "validates unit_price_cents is non-negative" do
-    base = {quote: quotes(:draft_one), name: "X", quantity: 1, vat_rate: 20}
+    base = { quote: quotes(:draft_one), name: "X", quantity: 1, vat_rate: 20 }
     assert_not QuoteItem.new(base.merge(unit_price_cents: -1)).valid?
     assert QuoteItem.new(base.merge(unit_price_cents: 0)).valid?
     assert QuoteItem.new(base.merge(unit_price_cents: 100)).valid?
   end
 
   test "validates vat_rate is in 0..100" do
-    base = {quote: quotes(:draft_one), name: "X", quantity: 1, unit_price_cents: 100}
-    [-1, 101].each do |rate|
+    base = { quote: quotes(:draft_one), name: "X", quantity: 1, unit_price_cents: 100 }
+    [ -1, 101 ].each do |rate|
       assert_not QuoteItem.new(base.merge(vat_rate: rate)).valid?, "vat_rate=#{rate} should be invalid"
     end
     assert QuoteItem.new(base.merge(vat_rate: 20)).valid?

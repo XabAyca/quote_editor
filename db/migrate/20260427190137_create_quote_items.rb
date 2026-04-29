@@ -1,7 +1,7 @@
 class CreateQuoteItems < ActiveRecord::Migration[7.2]
   def change
     create_table :quote_items do |t|
-      t.references :quote, null: false, foreign_key: {on_delete: :cascade}
+      t.references :quote, null: false, foreign_key: { on_delete: :cascade }
       t.string  :name, null: false
       t.decimal :quantity, precision: 10, scale: 2, null: false
       t.integer :unit_price_cents, null: false
