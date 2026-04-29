@@ -1,0 +1,19 @@
+<%= turbo_frame_tag :new_quote do %>
+  <div class="border-2 border-violet-200 rounded-lg p-5">
+
+    <%= form_with model: @quote, class: "flex items-center gap-3" do |f| %>
+      <%= f.text_field :name,
+            placeholder: "Nom du devis",
+            autofocus: true,
+            class: "flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
+      <%= f.submit "✓", class: "px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 cursor-pointer" %>
+      <%= link_to "Annuler", quotes_path,
+            class: "px-4 py-2 text-gray-600 hover:text-gray-900" %>
+    <% end %>
+
+    <% if @quote.errors.any? %>
+      <p class="mt-2 text-sm text-red-600"><%= @quote.errors.full_messages.to_sentence %></p>
+    <% end %>
+
+  </div>
+<% end %>

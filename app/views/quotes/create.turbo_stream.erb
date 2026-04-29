@@ -1,0 +1,2 @@
+<%= turbo_stream.append "quotes", partial: "quotes/quote", locals: {quote: @quote} %>
+<%= turbo_stream.replace :new_quote, partial: "quotes/new_quote_button" %>

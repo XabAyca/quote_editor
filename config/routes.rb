@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       member do
         patch :validate
       end
-      resources :quote_items, only: %i[new create edit update destroy], shallow: true
+      resources :quote_items, only: %i[index new create edit update destroy]
     end
   end
 end

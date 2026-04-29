@@ -2,6 +2,9 @@
 
 # A single line of a quote. Inherits immutability from its parent quote once it is validated.
 class QuoteItem < ApplicationRecord
+  broadcasts_to ->(quote_item) { [quote_item.quote, :quote_items] }, inserts_by: :append
+  after_commit :broadcast_stats_update, on: %i[create update destroy]
+
   belongs_to :quote, inverse_of: :quote_items
 
   validates :name, presence: true
@@ -45,6 +48,16 @@ class QuoteItem < ApplicationRecord
   end
 
   private
+
+  def broadcast_stats_update
+    broadcast_replace_later_to(
+      quote,
+      :quote_items,
+      target: "quote_totals",
+      partial: "quote_items/quote_totals",
+      locals: {quote: quote}
+    )
+  end
 
   def parent_quote_must_be_draft
     return unless quote&.validated? && !quote.validated_at_changed?

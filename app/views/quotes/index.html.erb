@@ -1,0 +1,23 @@
+<%= turbo_stream_from :quotes %>
+<div class="min-h-screen p-8 w-full">
+  <h1 class="text-3xl font-bold text-slate-900 mb-8">Mes devis</h1>
+
+  <table class="w-full border-separate border-spacing-0">
+    <thead>
+      <tr class="text-xs font-semibold uppercase text-violet-400 tracking-wider">
+        <th class="bg-violet-50 text-left px-6 py-3 rounded-l">ID</th>
+        <th class="bg-violet-50 text-left px-6 py-3">Date</th>
+        <th class="bg-violet-50 text-left px-6 py-3">Nom</th>
+        <th class="bg-violet-50 px-6 py-3 rounded-r"></th>
+      </tr>
+    </thead>
+
+    <tbody id="quotes" class="divide-y divide-gray-100">
+      <%= render @quotes %>
+    </tbody>
+  </table>
+
+  <div class="mt-6">
+    <%= render "new_quote_button" %>
+  </div>
+</div>

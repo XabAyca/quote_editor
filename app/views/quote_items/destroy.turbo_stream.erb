@@ -1,0 +1,2 @@
+<%= turbo_stream.remove @quote_item %>
+<%= turbo_stream.replace "quote_totals", partial: "quote_items/quote_totals", locals: { quote: @quote } %>

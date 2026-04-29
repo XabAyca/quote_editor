@@ -2,6 +2,8 @@
 
 # A customer quote made of line items. Becomes immutable once `validated_at` is set.
 class Quote < ApplicationRecord
+  broadcasts_to ->(_) { :quotes }, inserts_by: :append
+
   has_many :quote_items, inverse_of: :quote, dependent: :destroy
   accepts_nested_attributes_for :quote_items, allow_destroy: true, reject_if: :all_blank
 

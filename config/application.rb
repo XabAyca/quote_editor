@@ -26,5 +26,9 @@ module QuoteEditor
 
     config.i18n.default_locale = :fr
     config.i18n.available_locales = %i[fr en]
+
+    # Don't wrap invalid form fields in a `<div class="field_with_errors">` —
+    # we display errors explicitly in the form (Tailwind-friendly, keeps `flex-1` working).
+    config.action_view.field_error_proc = ->(html_tag, _) { html_tag.html_safe }
   end
 end

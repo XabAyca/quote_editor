@@ -1,0 +1,21 @@
+<tr id="<%= dom_id(quote) %>">
+  <td class="px-6 py-4 text-sm text-gray-500"><%= quote.id %></td>
+  <td class="px-6 py-4 text-sm text-gray-500"><%= I18n.l(quote.created_at, format: :short) %></td>
+  <td class="px-6 py-4 font-bold text-slate-900"><%= quote.name %></td>
+  <td class="px-6 py-4">
+    <div class="flex gap-2 justify-end">
+      <% if quote.validated? %>
+        <%= link_to quote_quote_items_path(quote), class: "p-2 bg-white border border-gray-300 rounded text-slate-900 hover:bg-gray-50", aria: { label: "Voir le devis" } do %>
+          <%= icon :eye %>
+        <% end %>
+      <% else %>
+        <%= link_to quote_quote_items_path(quote), data: { turbo_stream: true }, class: "p-2 bg-slate-900 text-white rounded hover:bg-slate-800", aria: { label: "Modifier le devis" } do %>
+          <%= icon :pencil %>
+        <% end %>
+        <%= button_to quote_path(quote), method: :delete, form: { data: { turbo_confirm: "Supprimer ce devis ?" } }, class: "cursor-pointer p-2 bg-orange-500 text-white rounded hover:bg-orange-600", aria: { label: "Supprimer le devis" } do %>
+          <%= icon :trash %>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>
