@@ -13,3 +13,5 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+Rails.application.routes.default_url_options[:locale] = I18n.default_locale

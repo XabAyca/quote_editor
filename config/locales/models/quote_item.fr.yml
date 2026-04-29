@@ -9,6 +9,7 @@ fr:
         name: "Article"
         quantity: "Quantité"
         unit_price: "Prix unitaire HT"
+        unit_price_cents: "Prix unitaire HT"
         vat_rate: "TVA"
     errors:
       models:

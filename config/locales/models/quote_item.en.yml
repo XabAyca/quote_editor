@@ -9,6 +9,7 @@ en:
         name: "Item"
         quantity: "Quantity"
         unit_price: "Unit price (excl. tax)"
+        unit_price_cents: "Unit price (excl. tax)"
         vat_rate: "VAT"
     errors:
       models:
