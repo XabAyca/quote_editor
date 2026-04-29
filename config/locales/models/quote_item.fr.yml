@@ -1,0 +1,18 @@
+fr:
+  activerecord:
+    models:
+      quote_item:
+        one: "Article"
+        other: "Articles"
+    attributes:
+      quote_item:
+        name: "Article"
+        quantity: "Quantité"
+        unit_price: "Prix unitaire HT"
+        vat_rate: "TVA"
+    errors:
+      models:
+        quote_item:
+          attributes:
+            base:
+              quote_validated: "impossible de modifier un article d'un devis validé"

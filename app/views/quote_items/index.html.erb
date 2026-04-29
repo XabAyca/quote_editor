@@ -1,24 +1,24 @@
 <%= turbo_stream_from @quote, :quote_items %>
 
 <div class="min-h-screen p-8 w-full">
-  <%= link_to "←   Enregistrer et quitter", quotes_path, class: "inline-block border-2 border-slate-700 text-slate-700 rounded-lg p-3 mb-10 hover:bg-slate-100" %>
+  <%= link_to t(".back"), quotes_path, class: "inline-block border-2 border-slate-700 text-slate-700 rounded-lg p-3 mb-10 hover:bg-slate-100" %>
 
   <h1 class="text-3xl font-bold text-slate-900 mb-8">
     <%= @quote.name %>
     <% if @quote.validated? %>
-      <span class="inline-block px-2 py-1 rounded-lg bg-green-200 text-green-700 text-base align-middle">Validé</span>
+      <span class="inline-block px-2 py-1 rounded-lg bg-green-200 text-green-700 text-base align-middle"><%= t(".status.validated") %></span>
     <% else %>
-      <span class="inline-block px-2 py-1 rounded-lg bg-violet-100 text-violet-400 text-base align-middle">En cours d'édition</span>
+      <span class="inline-block px-2 py-1 rounded-lg bg-violet-100 text-violet-400 text-base align-middle"><%= t(".status.draft") %></span>
     <% end %>
   </h1>
 
   <div class="grid grid-cols-12 gap-4 px-6 py-3 bg-violet-50 rounded text-xs font-semibold uppercase text-violet-400 tracking-wider">
-    <div class="col-span-3">Article</div>
-    <div class="col-span-1">Qte</div>
-    <div class="col-span-1">PU HT</div>
-    <div class="col-span-1">TVA</div>
-    <div class="col-span-2">Total HT</div>
-    <div class="col-span-2">Total TTC</div>
+    <div class="col-span-3"><%= t(".headers.article") %></div>
+    <div class="col-span-1"><%= t(".headers.quantity") %></div>
+    <div class="col-span-1"><%= t(".headers.unit_price") %></div>
+    <div class="col-span-1"><%= t(".headers.vat") %></div>
+    <div class="col-span-2"><%= t(".headers.total_excl_tax") %></div>
+    <div class="col-span-2"><%= t(".headers.total_incl_tax") %></div>
     <div class="col-span-2"></div>
   </div>
 
@@ -36,7 +36,7 @@
 
     <% unless @quote.validated? %>
       <%= button_to validate_quote_path(@quote), method: :patch, class: "inline-flex items-center gap-2 px-5 py-3 bg-yellow-400 text-slate-900 font-semibold rounded-lg hover:bg-yellow-500 cursor-pointer" do %>
-        Valider le devis  →
+        <%= t(".validate") %>
       <% end %>
     <% end %>
   </div>

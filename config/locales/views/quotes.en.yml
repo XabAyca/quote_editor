@@ -1,0 +1,13 @@
+en:
+  quotes:
+    index:
+      title: "My quotes"
+    quote:
+      view: "View quote"
+      edit: "Edit quote"
+      destroy: "Delete quote"
+      confirm_destroy: "Delete this quote?"
+    new:
+      placeholder_name: "Quote name"
+    new_quote_button:
+      add: "Add a quote"

@@ -61,7 +61,7 @@ class QuoteItem < ApplicationRecord
 
   def parent_quote_must_be_draft
     return unless quote&.validated? && !quote.validated_at_changed?
-    errors.add(:base, "cannot modify items of a validated quote")
+    errors.add(:base, :quote_validated)
   end
 
   def prevent_destroy_if_quote_validated

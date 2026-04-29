@@ -31,7 +31,7 @@ class QuotesController < ApplicationController
 
   def validate
     @quote.mark_as_validated! unless @quote.validated?
-    redirect_to quotes_path, notice: "Facture validé"
+    redirect_to quotes_path, notice: t(".success")
   end
 
   private

@@ -1,14 +1,14 @@
 <div id="quote_totals" class="bg-white border border-gray-200 rounded-lg shadow-sm px-6 py-4 min-w-80">
   <div class="flex justify-between mb-2 text-slate-700">
-    <span>Total HT</span>
+    <span><%= t(".excl_tax") %></span>
     <span class="font-medium text-slate-900"><%= number_to_currency(quote.total_excl_tax_cents / 100.0) %></span>
   </div>
   <div class="flex justify-between mb-2 text-violet-400">
-    <span>Total TVA</span>
+    <span><%= t(".vat") %></span>
     <span><%= number_to_currency(quote.total_vat_cents / 100.0) %></span>
   </div>
   <div class="flex justify-between pt-2 border-t border-gray-100 font-bold text-slate-900">
-    <span>Total TTC</span>
+    <span><%= t(".incl_tax") %></span>
     <span><%= number_to_currency(quote.total_incl_tax_cents / 100.0) %></span>
   </div>
 </div>

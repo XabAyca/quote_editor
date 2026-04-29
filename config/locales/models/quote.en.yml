@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      quote:
+        one: "Quote"
+        other: "Quotes"
+    attributes:
+      quote:
+        id: "ID"
+        name: "Name"
+        created_at: "Date"
+        validated_at: "Validated at"

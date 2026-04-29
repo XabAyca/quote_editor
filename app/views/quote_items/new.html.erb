@@ -3,29 +3,28 @@
     <div class="grid grid-cols-12 gap-4 items-center px-6 py-4 border-2 border-violet-200 rounded-lg">
       <%= form_with model: [@quote, @quote_item], class: "contents" do |f| %>
         <%= f.text_field :name,
-              placeholder: "Titre de l'article",
+              placeholder: t(".placeholder_name"),
               autofocus: true,
               class: "col-span-3 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
         <%= f.number_field :quantity,
-              placeholder: "Quantité",
+              placeholder: t(".placeholder_quantity"),
               step: "0.5",
               class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
         <%= f.number_field :unit_price,
-              placeholder: "Montant €",
+              placeholder: t(".placeholder_unit_price"),
               step: "0.01",
               class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
         <%= f.select :vat_rate,
               [["5,5 %", 5.5], ["10 %", 10], ["20 %", 20]],
-              { prompt: "TVA" },
+              { prompt: t(".prompt_vat") },
               class: "col-span-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
 
-        <div class="col-span-2 text-sm text-gray-400">Total HT</div>
-        <div class="col-span-2 text-sm text-gray-400">Total TTC</div>
+        <div class="col-span-2 text-sm text-gray-400"><%= t("quote_items.index.headers.total_excl_tax") %></div>
+        <div class="col-span-2 text-sm text-gray-400"><%= t("quote_items.index.headers.total_incl_tax") %></div>
 
         <div class="col-span-2 flex gap-2 justify-end">
-          <%= f.submit "✓",
-                class: "px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 cursor-pointer" %>
-          <%= link_to "Annuler", quote_quote_items_path(@quote),
+          <%= f.submit class: "px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 cursor-pointer" %>
+          <%= link_to t("shared.actions.cancel"), quote_quote_items_path(@quote),
                 class: "px-2 py-2 text-gray-600 hover:text-gray-900" %>
         </div>
       <% end %>

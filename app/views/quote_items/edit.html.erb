@@ -19,9 +19,8 @@
       <div class="col-span-2 font-semibold text-slate-900"><%= number_to_currency(@quote_item.total_incl_tax_cents / 100.0) %></div>
 
       <div class="col-span-2 flex gap-2 justify-end">
-        <%= f.submit "✓",
-              class: "px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 cursor-pointer" %>
-        <%= link_to "Annuler", quote_quote_items_path(@quote),
+        <%= f.submit class: "px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 cursor-pointer" %>
+        <%= link_to t("shared.actions.cancel"), quote_quote_items_path(@quote),
               class: "px-2 py-2 text-gray-600 hover:text-gray-900" %>
       </div>
     <% end %>

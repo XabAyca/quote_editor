@@ -1,0 +1,30 @@
+fr:
+  quote_items:
+    index:
+      back: "←   Enregistrer et quitter"
+      validate: "Valider le devis  →"
+      status:
+        validated: "Validé"
+        draft: "En cours d'édition"
+      headers:
+        article: "Article"
+        quantity: "Qte"
+        unit_price: "PU HT"
+        vat: "TVA"
+        total_excl_tax: "Total HT"
+        total_incl_tax: "Total TTC"
+    quote_item:
+      edit: "Modifier l'article"
+      destroy: "Supprimer l'article"
+      confirm_destroy: "Supprimer cet article ?"
+    new:
+      placeholder_name: "Titre de l'article"
+      placeholder_quantity: "Quantité"
+      placeholder_unit_price: "Montant €"
+      prompt_vat: "TVA"
+    new_quote_item_button:
+      add: "Ajouter un article"
+    quote_totals:
+      excl_tax: "Total HT"
+      vat: "Total TVA"
+      incl_tax: "Total TTC"

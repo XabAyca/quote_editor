@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    models:
+      quote_item:
+        one: "Item"
+        other: "Items"
+    attributes:
+      quote_item:
+        name: "Item"
+        quantity: "Quantity"
+        unit_price: "Unit price (excl. tax)"
+        vat_rate: "VAT"
+    errors:
+      models:
+        quote_item:
+          attributes:
+            base:
+              quote_validated: "cannot modify items of a validated quote"

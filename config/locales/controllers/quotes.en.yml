@@ -1,0 +1,4 @@
+en:
+  quotes:
+    validate:
+      success: "Quote validated"

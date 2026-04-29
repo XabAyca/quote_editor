@@ -1,0 +1,30 @@
+en:
+  quote_items:
+    index:
+      back: "←   Save and exit"
+      validate: "Validate quote  →"
+      status:
+        validated: "Validated"
+        draft: "Draft"
+      headers:
+        article: "Item"
+        quantity: "Qty"
+        unit_price: "Unit price"
+        vat: "VAT"
+        total_excl_tax: "Total excl. tax"
+        total_incl_tax: "Total incl. tax"
+    quote_item:
+      edit: "Edit item"
+      destroy: "Delete item"
+      confirm_destroy: "Delete this item?"
+    new:
+      placeholder_name: "Item title"
+      placeholder_quantity: "Quantity"
+      placeholder_unit_price: "Amount €"
+      prompt_vat: "VAT"
+    new_quote_item_button:
+      add: "Add an item"
+    quote_totals:
+      excl_tax: "Total excl. tax"
+      vat: "Total VAT"
+      incl_tax: "Total incl. tax"

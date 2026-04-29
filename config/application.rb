@@ -26,6 +26,7 @@ module QuoteEditor
 
     config.i18n.default_locale = :fr
     config.i18n.available_locales = %i[fr en]
+    config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.{rb,yml}")]
 
     # Don't wrap invalid form fields in a `<div class="field_with_errors">` —
     # we display errors explicitly in the form (Tailwind-friendly, keeps `flex-1` working).

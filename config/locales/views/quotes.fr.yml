@@ -1,0 +1,13 @@
+fr:
+  quotes:
+    index:
+      title: "Mes devis"
+    quote:
+      view: "Voir le devis"
+      edit: "Modifier le devis"
+      destroy: "Supprimer le devis"
+      confirm_destroy: "Supprimer ce devis ?"
+    new:
+      placeholder_name: "Nom du devis"
+    new_quote_button:
+      add: "Ajouter un devis"
