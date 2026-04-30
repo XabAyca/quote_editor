@@ -7,7 +7,7 @@ export default class extends Controller {
   }
 
   connect() {
-    this.update
+    this.update()
   }
 
   formatCurrency(value) {
