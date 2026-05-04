@@ -36,4 +36,45 @@ class QuotesControllerTest < ActionDispatch::IntegrationTest
       delete quote_path(quote), as: :turbo_stream
     end
   end
+
+  # --- show ---
+
+  test "shows a quote as turbo stream" do
+    quote = quotes(:draft_one)
+    get quote_path(quote), as: :turbo_stream
+    assert_response :success
+  end
+
+  # --- edit ---
+
+  test "renders the edit form as turbo stream" do
+    quote = quotes(:draft_one)
+    get edit_quote_path(quote), as: :turbo_stream
+    assert_response :success
+  end
+
+  # --- update ---
+
+  test "updates a quote name with valid params" do
+    quote = quotes(:draft_one)
+    patch quote_path(quote), params: { quote: { name: "Nom modifié" } }, as: :turbo_stream
+    assert_response :success
+    assert_equal "Nom modifié", quote.reload.name
+  end
+
+  test "rejects update with blank name" do
+    quote = quotes(:draft_one)
+    original_name = quote.name
+    patch quote_path(quote), params: { quote: { name: "" } }, as: :turbo_stream
+    assert_response :unprocessable_entity
+    assert_equal original_name, quote.reload.name
+  end
+
+  test "does not update a validated quote" do
+    quote = quotes(:validated_one)
+    original_name = quote.name
+    patch quote_path(quote), params: { quote: { name: "Nom modifié" } }, as: :turbo_stream
+    assert_response :unprocessable_entity
+    assert_equal original_name, quote.reload.name
+  end
 end
