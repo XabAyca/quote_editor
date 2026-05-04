@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: Regexp.union(I18n.available_locales.map(&:to_s)) do
     root "quotes#index"
-    resources :quotes, only: %i[index new create destroy] do
+    resources :quotes do
       member { patch :validate }
       resources :quote_items, only: %i[index new create edit update destroy]
     end

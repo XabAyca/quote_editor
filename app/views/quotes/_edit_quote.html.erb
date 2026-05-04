@@ -1,0 +1,30 @@
+<tr id="<%= dom_id(quote) %>">
+  <td class="px-6 py-4 text-sm text-gray-500"><%= quote.id %></td>
+  <td class="px-6 py-4 text-sm text-gray-500"><%= l(quote.created_at, format: :short) %></td>
+  <td class="px-6 py-4">
+    <%= form_with model: quote, id: "edit_#{dom_id(quote)}" do |f| %>
+      <%= f.text_field :name,
+            autofocus: true,
+            class: "w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
+    <% end %>
+  </td>
+  <td class="px-6 py-4">
+    <div class="flex gap-2 justify-end">
+      <%= submit_tag t("helpers.submit.update"),
+            form: "edit_#{dom_id(quote)}",
+            class: "px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 cursor-pointer" %>
+      <%= link_to t("shared.actions.cancel"), quote_path(quote),
+        class: "px-4 py-2 text-gray-600 hover:text-gray-900",
+        data: {turbo_stream: true}
+      %>
+    </div>
+  </td>
+</tr>
+
+<% if quote.errors.any? %>
+  <tr>
+    <td colspan="4" class="px-6 py-2 text-sm text-red-600">
+      <%= quote.errors.full_messages.to_sentence %>
+    </td>
+  </tr>
+<% end %>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuotesController < ApplicationController
-  before_action :set_quote, only: %i[destroy validate]
+  before_action :set_quote, only: %i[show destroy validate update edit]
 
   def index
     @quotes = Quote.order(created_at: :asc)
@@ -19,6 +19,20 @@ class QuotesController < ApplicationController
       end
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @quote.update(quote_params)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      render turbo_stream: turbo_stream.replace(
+        helpers.dom_id(@quote),
+        partial: "quotes/edit_quote",
+        locals: { quote: @quote }
+      ), status: :unprocessable_entity
     end
   end
 
