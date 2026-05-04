@@ -28,11 +28,7 @@ class QuotesController < ApplicationController
         format.turbo_stream
       end
     else
-      render turbo_stream: turbo_stream.replace(
-        helpers.dom_id(@quote),
-        partial: "quotes/edit_quote",
-        locals: { quote: @quote }
-      ), status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

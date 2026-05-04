@@ -7,6 +7,11 @@
             autofocus: true,
             class: "w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-violet-500" %>
     <% end %>
+    <% if quote.errors.any? %>
+      <span colspan="4" class="py-2 text-sm text-red-600">
+        <%= quote.errors.full_messages.to_sentence %>
+      </span>
+    <% end %>
   </td>
   <td class="px-6 py-4">
     <div class="flex gap-2 justify-end">
@@ -20,11 +25,3 @@
     </div>
   </td>
 </tr>
-
-<% if quote.errors.any? %>
-  <tr>
-    <td colspan="4" class="px-6 py-2 text-sm text-red-600">
-      <%= quote.errors.full_messages.to_sentence %>
-    </td>
-  </tr>
-<% end %>
