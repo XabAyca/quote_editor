@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(quote) %>">
   <td class="px-6 py-4 text-sm text-gray-500"><%= quote.id %></td>
   <td class="px-6 py-4 text-sm text-gray-500"><%= l(quote.created_at, format: :short) %></td>
-  <td class="px-6 py-4 font-bold text-slate-900"><%= quote.name %></td>
+  <td class="px-6 py-4 font-bold text-slate-900"><%= quote.validated? ? quote.name : link_to(quote.name, edit_quote_path(quote), class: "#{"hover:text-slate-500" unless quote.validated?}" , data: {turbo_stream: true}) %></td>
   <td class="px-6 py-4">
     <div class="flex gap-2 justify-end">
       <% if quote.validated? %>
