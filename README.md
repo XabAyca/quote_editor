@@ -76,7 +76,7 @@ default `fr`):
 
 - `GET  /`                                → list of quotes
 - `GET  /quotes/new` · `POST /quotes`     → create a quote
-- `GET  /quotes/:id` · `PATCH /quotes/:id`→ show / update a quote
+- `PATCH /quotes/:id`                     → update a quote
 - `PATCH /quotes/:id/validate`            → mark a quote as validated
 - `resources :quote_items` nested under a quote, for adding / editing /
   deleting line items inline via Turbo Streams
