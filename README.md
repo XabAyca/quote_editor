@@ -16,7 +16,7 @@ the broader Rails ecosystem.
 ## Tech stack
 
 - **Ruby** 3.4.7
-- **Rails** 7.2.1
+- **Rails** 8.1.3
 - **PostgreSQL** (Active Record)
 - **Hotwire** — Turbo Streams (broadcast over Action Cable) and Stimulus
 - **Tailwind CSS** via `tailwindcss-rails`
